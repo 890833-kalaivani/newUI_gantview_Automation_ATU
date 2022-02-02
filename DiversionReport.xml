@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="UITestcases"  parallel="false" thread-count="3" > 
+ 
+    
+    <!-- <test name="Regressionsuite 1" allow-return-values="true">
+  	 <parameter name="browser" value="Chrome" />
+  	 <parameter name="Environment" value="https://get.azpe.aa.com/GETNextGen/#!/dashboard"/>
+  	<classes>
+	<class name="get.next.gen.webtestcase.DiversionReport_TestCases"></class>
+	</classes> 
+	</test> -->
+	<test name="Regressionsuite 2" allow-return-values="true">
+  	 <parameter name="browser" value="Chrome" />
+  	 <parameter name="Environment" value="https://diversions.lka.aa.com/DiversionTracker/#/"/>
+  	<classes>
+	<class name="get.next.gen.webtestcase.LookAhead_testcases"></class>
+	</classes>
+	</test>
+</suite>
+	
+	
+
+
+

@@ -1,0 +1,1 @@
+rmdir "Results" /S /Q

@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="ServiceTestcases"  >
+
+  <test name="Servicesuite" allow-return-values="true">
+ 
+	 <parameter name="browser" value="Service" />
+	  <classes>
+		<class name="get.next.gen.webtestcase.ServiceScript_CrewandEOBT"></class>
+		</classes>
+	</test>
+
+</suite>
+

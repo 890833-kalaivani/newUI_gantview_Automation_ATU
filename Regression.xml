@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="UITestcases"  > 
+  
+<test name="Regressionsuite" allow-return-values="true">
+														
+  	 <parameter name="browser" value="Chrome" />
+  	<parameter name="Environment" value="https://get.azne.aa.com/GetNG/home"/> 
+  	<!-- <parameter name="Environment" value="https://diversions.lka.aa.com/DiversionTracker/#/"/>  -->
+  	<classes>
+	<!-- <class name="get.next.gen.webtestcase.RegressionSuite2"></class> -->
+	<class name="get.next.gen.webtestcase.PuckValidation"></class>
+	</classes>
+	</test>
+
+</suite>
+	
+		
+
+
+

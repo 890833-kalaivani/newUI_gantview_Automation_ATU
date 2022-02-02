@@ -1,0 +1,36 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="UITestcases"  parallel="tests" thread-count="3" > 
+ 
+    
+    <test name="Regressionsuite 1" allow-return-values="true">
+  	 <parameter name="browser" value="Chrome" />
+  	 <parameter name="Environment" value="https://getng-stage.aa.com/GETNextGen/#/dashboard"/>
+  	<classes>
+	<class name="get.next.gen.webtestcase.CrewUserstory"></class>
+	</classes>
+	</test>
+	
+    <test name="Regressionsuite 2" allow-return-values="true">
+  	 <parameter name="browser" value="Wrapper" />
+  	 <parameter name="Environment" value="https://getng-stage.aa.com/GETNextGen/#/dashboard"/>
+  	<classes>
+		<class name="get.next.gen.webtestcase.CrewUserstory"></class>
+	</classes>
+	</test>
+	
+    
+   <test name="Regressionsuite 3" allow-return-values="true">
+  	 <parameter name="browser" value="Service" />
+  	 <parameter name="Environment" value="https://getng-stage.aa.com/GETNextGen/#/dashboard"/>
+  	<classes>
+			<class name="get.next.gen.webtestcase.ServiceScriptforCrewalert"></class>
+	</classes>
+	</test>
+	
+</suite>
+	
+	
+
+
+
