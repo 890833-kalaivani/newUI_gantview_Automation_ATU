@@ -63,7 +63,7 @@ public class PuckValidation extends CommonTest {
 	}
 	@Test(priority = 1)
 	public void TS24_ArrivaldetailsExistance() throws Exception {
-		PuckUIPlacement.DeparturestatusValidation("Ganttview");
+		PuckUIPlacement.ArrivalstatusValidation("Ganttview");
 		Memoryused();
 	}
 		/*@Test(priority = 1)
