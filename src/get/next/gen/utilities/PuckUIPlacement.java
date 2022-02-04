@@ -261,7 +261,7 @@ public class PuckUIPlacement extends CommonTest {
 							actions.moveToElement(gantelement).build().perform();
 							actions.moveToElement(gantelement);
 							// Verifying EQtype and Arrival Station
-							String  EqtypeandArrivalstation = gantelement.findElement(By.xpath("div")).getAttribute("innerText").trim();
+							String  EqtypeandArrivalstation = gantelement.	getAttribute("innerText").trim();
 							System.out.println("EqtypeandArrivalstation " + EqtypeandArrivalstation);
 							if(EqtypeandArrivalstation.contains("null"))
 							{
@@ -502,7 +502,7 @@ public class PuckUIPlacement extends CommonTest {
 						i++;
 
 
-					/*	try{
+						/*	try{
 							String idofelement = gantelement.findElement(By.xpath(Web_UI.ancestorid)).getAttribute("id");
 							ATUReports.add("Verifying puck with id :: "+idofelement,  LogAs.PASSED, null);
 
@@ -599,30 +599,37 @@ public class PuckUIPlacement extends CommonTest {
 
 
 	}
+	public static void main(String[] args) {
+		String ArrivalStatus = "IN";
+		System.out.println("ArrivalStatus" +ArrivalStatus);
+		
+		List<String> Arrivalcodelist = Arrays.asList("CHO","SKD","HLD","PRE","DCN","ETA","OFF","ON","IN","CXL","RTD");
+		boolean contains = Arrivalcodelist.contains(ArrivalStatus);
+
+		System.out.println("contains "+contains);
+		
+	}
 
 	public static void ArrivalstatusValidation(String view) throws Exception {
 
 
 		System.out.println("Verify the arrival status present and defined in required format");
-		/*TestcaseInit();
-		CommonTest.Selectview(view);*/
+		//TestcaseInit();
+		CommonTest.Selectview(view);
 		try{
-			clickByXpathbyView(view, Web_UI.TotalGate, Web_UI.HybridAllGate);
-
-			Thread.sleep(2000);
+			Thread.sleep(20000);
+			clickByXpathbyView(view, Web_UI.TotalGate, Web_UI.HybridAllGate);			
 			ATUReports.add("TotalGate stats selected",  LogAs.PASSED, null);
-
-
-			clickByXpath(Web_UI.SortAscending,"SortAscending");
+			/*clickByXpath(Web_UI.SortAscending,"SortAscending");
 			Thread.sleep(1000);
 			// Select Sort Ascending gate by alphabetical order from dropdown
 			clickByXpath(Web_UI.SortAscendinggate,"SortAscendinggate");
-			Thread.sleep(1000);
+			Thread.sleep(1000);*/
 			List<WebElement> Ganntlist = getDriver().findElements(By.xpath(Web_UI.PuckArrivaltimeandstatus));
 			int Ganntlistcount = Ganntlist.size();
 			if(Ganntlistcount == 0)
 			{
-				CommonTest.CheckGanttviewListisnotZero();
+				//CommonTest.CheckGanttviewListisnotZero();
 			}
 
 			if(Ganntlistcount == 0)
@@ -638,7 +645,7 @@ public class PuckUIPlacement extends CommonTest {
 					for (WebElement gantelement : Ganntlist) {
 						i++;
 
-						try{
+						/*try{
 							String idofelement = gantelement.findElement(By.xpath(Web_UI.ancestorid)).getAttribute("id");
 							ATUReports.add("Verifying puck with id :: "+idofelement,  LogAs.INFO, null); 
 
@@ -646,7 +653,7 @@ public class PuckUIPlacement extends CommonTest {
 						{
 
 						}
-
+						 */
 						try {
 
 							Actions actions = new Actions(getDriver());
@@ -657,8 +664,6 @@ public class PuckUIPlacement extends CommonTest {
 							{
 
 								ATUReports.add("Arrival Time and Arrival Status present in the puck No "+i,  LogAs.PASSED, null);
-
-
 							}
 							else
 							{
@@ -666,42 +671,33 @@ public class PuckUIPlacement extends CommonTest {
 
 								captureinfoScreenshot(getDriver(),"Arrival Time and Arrival Status is not present in the puck No "+i);
 							}
-
-							String Arrivalstationdetailscomplete = gantelement.getAttribute("innerText");
-							String arrivalstationsplit[] = Arrivalstationdetailscomplete.split(" ");
+							String ArrivalStatus = gantelement.findElement(By.xpath("div/span")).getAttribute("innerText");				
+							/*String arrivalstationsplit[] = Arrivalstationdetailscomplete.split(" ");
+							System.out.println("arrivalstationsplit"+arrivalstationsplit.length);
 							String ArrivalStatus = arrivalstationsplit[0].trim();
+							System.out.println("ArrivalStatus" +ArrivalStatus);
 							int ArrivalStatusLength = ArrivalStatus.length();
+							System.out.println("ArrivalStatusLength" +ArrivalStatusLength);*/
 							List<String> Arrivalcodelist = Arrays.asList("CHO","SKD","HLD","PRE","DCN","ETA","OFF","ON","IN","CXL","RTD");
 							boolean contains = Arrivalcodelist.contains(ArrivalStatus);
 
-
+							System.out.println("contains "+contains);
 							if(contains == true )
 							{
 								ATUReports.add("Arrival status is displayed correctly  "+"  "+ArrivalStatus,  LogAs.PASSED, null);
-
-
-
-
 							} else {
 
-								ATUReports.add("Arrival status is Not displayed correctly  "+"  "+ArrivalStatus,  LogAs.PASSED, null);
+								ATUReports.add("Arrival status is Not displayed correctly  "+"  "+ArrivalStatus,  LogAs.FAILED, null);
 
 								System.out.println("Arrival status is Not displayed correctly   "+i);
 								captureinfoScreenshot(getDriver(),"Arrival status is Not displayed correctly   "+i);
 							}
 						}catch(Exception Someissueinmovingbetweenpuck)
 						{
-
-
 						}
 					}
 				}
 			}
-
-
-
-
-
 		}
 		catch(Exception Totalgatenotselected){
 			ATUReports.add("Couldnot able to select Total gate",  LogAs.INFO, new CaptureScreen(ScreenshotOf.BROWSER_PAGE)); 
@@ -709,34 +705,30 @@ public class PuckUIPlacement extends CommonTest {
 			CommonTest.CheckCancelPopupPresentandclose();
 			Checkappupdateclosebutton();
 		}
-
-
-
-
-
 	}
 
 
 	public static void DeparturestatusValidation(String view) throws Exception {
 
 		System.out.println("Verify the departure status exist in the puck and defined in required format");
-		TestcaseInit();
+		//TestcaseInit();
 		CommonTest.Selectview(view);
 		try{
-			clickByXpathbyView(view, Web_UI.LateArrival, Web_UI.HybridLatearrival);
+			Thread.sleep(20000);
+			/*clickByXpathbyView(view, Web_UI.TotalGate, Web_UI.HybridLatearrival);
 			Thread.sleep(2000);
 			ATUReports.add("TotalGate stats selected",  LogAs.PASSED, null);
 			clickByXpath(Web_UI.SortAscending,"SortAscending");
 			Thread.sleep(1000);
 			// Select Sort Ascending gate by alphabetical order from dropdown
 			clickByXpath(Web_UI.SortAscendinggate,"SortAscendinggate");
-			Thread.sleep(1000);
+			Thread.sleep(1000);*/
 			List<WebElement> Ganntlist = getDriver().findElements(By.xpath(Web_UI.PuckDepartureStatusandtime));
 			int Ganntlistcount = Ganntlist.size();
 
 			if(Ganntlistcount == 0)
 			{
-				CommonTest.CheckGanttviewListisnotZero();
+				//CommonTest.CheckGanttviewListisnotZero();
 			}
 
 			if(Ganntlistcount == 0)
@@ -752,21 +744,21 @@ public class PuckUIPlacement extends CommonTest {
 						i++;
 
 
-						try{
+						/*try{
 							String idofelement = gantelement.findElement(By.xpath("ancestor::div[1]/ancestor::div[1]/ancestor::div[1]")).getAttribute("id");
 							ATUReports.add("Verifying puck with id :: "+idofelement,  LogAs.INFO, null); 
 
 						}catch(Exception id)
 						{
 
-						}
+						}*/
 						try {
 
 							Actions actions = new Actions(getDriver());
 							actions.moveToElement(gantelement).build().perform();
 							actions.moveToElement(gantelement);
 
-							String Linkagedetails = gantelement.findElement(By.xpath("ancestor::div[1]/ancestor::div[1]/div[2]")).getAttribute("innerText");
+							String Linkagedetails = gantelement.findElement(By.xpath("ancestor::app-ganttview-puck-corner/preceding::app-ganttview-puck-center/div[2]/span[2]")).getAttribute("innerText");
 							if(Linkagedetails.contains("UNL")){
 								ATUReports.add("Unlinked flight and hence skipping the validation for this puck "+i,  LogAs.PASSED, null);
 							}else{
@@ -783,9 +775,9 @@ public class PuckUIPlacement extends CommonTest {
 									ATUReports.add("Departure Time and Departure Status is not present in the puck No "+i,  LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 								}
 
-								String Arrivalstationdetailscomplete = gantelement.getAttribute("innerText");
-								String arrivalstationsplit[] = Arrivalstationdetailscomplete.split(" ");
-								String ArrivalStatus = arrivalstationsplit[0].trim();
+								String ArrivalStatus = gantelement.findElement(By.xpath("div/span")).getAttribute("innerText");
+								/*String arrivalstationsplit[] = Arrivalstationdetailscomplete.split(" ");
+								String ArrivalStatus = arrivalstationsplit[0].trim();*/
 
 								List<String> Arrivalcodelist = Arrays.asList("SKD","HLD","DCN","ETD","OFF","OUT","CXL","RTD");
 								boolean contains = Arrivalcodelist.contains(ArrivalStatus);
